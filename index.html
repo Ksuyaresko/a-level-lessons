@@ -42,7 +42,7 @@
         }
         .lesson-title {
             font-size: 30px;
-            margin: 0 0 40px;
+            margin: 0 0 20px;
             font-weight: normal;
             color: #159957;
         }
@@ -54,9 +54,20 @@
             padding: 50px;
             margin: 0 auto;
         }
+        pre {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(21, 153, 87, 0.05);
+            border: 1px solid rgba(21, 153, 87, 0.51);
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
         .lesson-text {
-            padding: 40px 0 20px;
+            padding: 20px 1rem;
+            margin: 10px 0;
             max-width: 900px;
+            color: #819198;
+            border-left: 0.3rem solid #dce6f0;
         }
         .footer {
             background-color: rgba(21, 153, 87, 0.05);
@@ -92,17 +103,15 @@
                 <div class="lesson-text">
                     Ваш скрипт должен вывести в консоль все числа больше 50
                 </div>
-                <pre>
+                <code>
+                    <pre>
 var numbers = [ 254, 115, 78, 25, 91, 45, 37 ]
 for(var i = 0; i < numbers.length; i++) {
     if(numbers[i] > 50) console.log(numbers[i])
-}
-                </pre>
+}</pre>
+                </code>
             </div>
         </div>
-    </div>
-    <div class="footer">
-
     </div>
 </div>
 </body>
