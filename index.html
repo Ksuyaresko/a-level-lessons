@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#fafafa">
     <style>
+        html {
+            overflow: overlay;
+        }
         body {
             margin: 0;
             font-size: 18px;
@@ -42,16 +45,33 @@
         }
         .lesson-title {
             font-size: 30px;
-            margin: 0 0 20px;
+            padding: 30px 50px;
+            margin: 0;
             font-weight: normal;
             color: #159957;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .lesson-title:after {
+            content: '';
+            display: block;
+            border-top: 10px solid #159957;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
         }
         .lesson-img {
             padding: 10px 0;
         }
-        .lesson__wrapper {
+        .header__wrapper {
             max-width: 1200px;
             padding: 50px;
+            margin: 0 auto;
+        }
+        .lesson__wrapper {
+            max-width: 1200px;
             margin: 0 auto;
         }
         pre {
@@ -61,18 +81,28 @@
             background-color: rgba(21, 153, 87, 0.05);
             border: 1px solid rgba(21, 153, 87, 0.51);
             font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            overflow: auto;
         }
         .lesson-text {
-            padding: 20px 1rem;
-            margin: 10px 0;
+            padding: 5px 1rem;
+            margin: 40px 0 0;
             max-width: 900px;
             color: #819198;
             border-left: 0.3rem solid #dce6f0;
         }
+        .lesson-text p {margin: 3px 0;}
         .footer {
             background-color: rgba(21, 153, 87, 0.05);
             min-height: 70px;
             border-top: 1px solid rgba(21, 153, 87, 0.51);
+        }
+        .lesson-inner {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s;
+        }
+        .lesson-inner__wrapper {
+            padding: 0 50px 50px;
         }
     </style>
 </head>
@@ -80,40 +110,125 @@
 <body>
 <div class="wrapper">
     <div class="header">
-        <div class="lesson__wrapper">
+        <div class="header__wrapper">
             <h1 class="author">Яресько Ксения</h1>
         </div>
     </div>
     <div class="main">
-        <div class="lesson">
+        <div class="lessons">
             <div class="lesson__wrapper">
                 <h2 class="lesson-title">Lesson 01</h2>
-                <div class="lesson-text">
-                    Нарисуйте блок-схему алгоритма, который проверяет значение входного параметра x, и если это значение больше или равно 0, то возвращает в качестве результата строку "Число положительное", в противном случае - строку "Число отрицательное"
-                </div>
-                <div class="lesson-img">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="341px" height="371px" viewBox="-0.5 -0.5 341 371"><defs/><g><path d="M 170 40 L 170 73.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 78.88 L 166.5 71.88 L 170 73.63 L 173.5 71.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="0" width="120" height="40" rx="6" ry="6" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(156.5,13.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="26" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 26px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Start</div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Start</text></switch></g><path d="M 170 120 L 170 153.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 158.88 L 166.5 151.88 L 170 153.63 L 173.5 151.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="80" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(154.5,93.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="30" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Get X</div></div></foreignObject><text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Get X</text></switch></g><path d="M 230 190 L 270 190 L 270 233.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 270 238.88 L 266.5 231.88 L 270 233.63 L 273.5 231.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(262.5,189.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="14" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">No</div></div></foreignObject><text x="7" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">No</text></switch></g><path d="M 110 190 L 70 190 L 70 233.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 70 238.88 L 66.5 231.88 L 70 233.63 L 73.5 231.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(60.5,189.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="18" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">Yes</div></div></foreignObject><text x="9" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">Yes</text></switch></g><path d="M 170 160 L 230 190 L 170 220 L 110 190 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(151.5,183.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 36px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">X &gt;= 0</div></div></foreignObject><text x="18" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">X &gt;= 0</text></switch></g><rect x="0" y="240" width="140" height="60" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(3.5,256.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="132" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 134px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;"><div style="text-align: justify"><span>return </span></div><div style="text-align: justify"><span>"Число положительное"</span></div></div></div></foreignObject><text x="66" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><rect x="200" y="240" width="140" height="60" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(204.5,256.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="130" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 130px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;"><div style="white-space: normal ; text-align: justify">return </div><div style="white-space: normal ; text-align: justify">"Число отрицательное"</div></div></div></foreignObject><text x="65" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 70 320 L 70 300" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 270 320 L 270 300" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 70 320 L 270 320" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 167 320 L 167 333.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 167 338.88 L 163.5 331.88 L 167 333.63 L 170.5 331.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="340" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(158.5,348.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 22px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g></g></svg>
-                </div>
-                <div class="lesson-text">
-                    Нарисуте блок-схему алгоритма суммирования 10 чисел, кратных 5 ( начиная с 0 )
-                </div>
-                <div class="lesson-img">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="314px" height="351px" viewBox="-0.5 -0.5 314 351"><defs/><g><rect x="40" y="0" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(86.5,8.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="26" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 26px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Start</div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Start</text></switch></g><path d="M 100 30 L 100 53.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 58.88 L 96.5 51.88 L 100 53.63 L 103.5 51.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 120 L 37 60 L 185 60 L 148 120 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(37.5,83.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="109" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 111px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">x = 0, n = 0, sum = 0</div></div></foreignObject><text x="55" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">x = 0, n = 0, sum = 0</text></switch></g><path d="M 100.09 123 L 100.05 153.68" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100.05 158.93 L 96.55 151.92 L 100.05 153.68 L 103.55 151.93 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 160 L 140 200 L 100 240 L 60 200 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(79.5,193.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="40" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 42px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">n &lt;= 10</div></div></foreignObject><text x="20" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">n &lt;= 10</text></switch></g><path d="M 100 240 L 100 273.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 278.88 L 96.5 271.88 L 100 273.63 L 103.5 271.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(90.5,254.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="18" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">Yes</div></div></foreignObject><text x="9" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">Yes</text></switch></g><path d="M 140 200 L 243 200 Q 253 200 253 210 L 253 243.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 253 248.88 L 249.5 241.88 L 253 243.63 L 256.5 241.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(214.5,194.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="14" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">No</div></div></foreignObject><text x="7" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">No</text></switch></g><rect x="40" y="280" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(41.5,286.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="116" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 116px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">n = n + 1, x = x + 5, sum = sum + x</div></div></foreignObject><text x="58" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">n = n + 1, x = x + 5, sum = sum + x</text></switch></g><path d="M 40 300 L 30 300 Q 20 300 20 290 L 20 210 Q 20 200 30 200 L 53.63 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 58.88 200 L 51.88 203.5 L 53.63 200 L 51.88 196.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="193" y="250" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(223.5,263.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="58" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 58px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">return sum</div></div></foreignObject><text x="29" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">return sum</text></switch></g><path d="M 253 290 L 253 313.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 253 318.88 L 249.5 311.88 L 253 313.63 L 256.5 311.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="193" y="320" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(241.5,328.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 22px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g></g></svg>
-                </div>
-                <div class="lesson-text">
-                    Ваш скрипт должен вывести в консоль все числа больше 50
-                </div>
-                <code>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            Нарисуйте блок-схему алгоритма, который проверяет значение входного параметра x, и если это значение больше или равно 0, то возвращает в качестве результата строку "Число положительное", в противном случае - строку "Число отрицательное"
+                        </div>
+                        <div class="lesson-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="341px" height="371px" viewBox="-0.5 -0.5 341 371"><defs/><g><path d="M 170 40 L 170 73.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 78.88 L 166.5 71.88 L 170 73.63 L 173.5 71.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="0" width="120" height="40" rx="6" ry="6" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(156.5,13.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="26" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 26px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Start</div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Start</text></switch></g><path d="M 170 120 L 170 153.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 158.88 L 166.5 151.88 L 170 153.63 L 173.5 151.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="80" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(154.5,93.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="30" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Get X</div></div></foreignObject><text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Get X</text></switch></g><path d="M 230 190 L 270 190 L 270 233.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 270 238.88 L 266.5 231.88 L 270 233.63 L 273.5 231.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(262.5,189.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="14" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">No</div></div></foreignObject><text x="7" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">No</text></switch></g><path d="M 110 190 L 70 190 L 70 233.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 70 238.88 L 66.5 231.88 L 70 233.63 L 73.5 231.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(60.5,189.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="18" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">Yes</div></div></foreignObject><text x="9" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">Yes</text></switch></g><path d="M 170 160 L 230 190 L 170 220 L 110 190 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(151.5,183.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 36px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">X &gt;= 0</div></div></foreignObject><text x="18" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">X &gt;= 0</text></switch></g><rect x="0" y="240" width="140" height="60" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(3.5,256.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="132" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 134px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;"><div style="text-align: justify"><span>return </span></div><div style="text-align: justify"><span>"Число положительное"</span></div></div></div></foreignObject><text x="66" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><rect x="200" y="240" width="140" height="60" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(204.5,256.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="130" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 130px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;"><div style="white-space: normal ; text-align: justify">return </div><div style="white-space: normal ; text-align: justify">"Число отрицательное"</div></div></div></foreignObject><text x="65" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 70 320 L 70 300" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 270 320 L 270 300" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 70 320 L 270 320" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 167 320 L 167 333.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 167 338.88 L 163.5 331.88 L 167 333.63 L 170.5 331.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="110" y="340" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(158.5,348.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 22px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g></g></svg>
+                        </div>
+                        <div class="lesson-text">
+                            Нарисуте блок-схему алгоритма суммирования 10 чисел, кратных 5 ( начиная с 0 )
+                        </div>
+                        <div class="lesson-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="314px" height="351px" viewBox="-0.5 -0.5 314 351"><defs/><g><rect x="40" y="0" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(86.5,8.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="26" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 26px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">Start</div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Start</text></switch></g><path d="M 100 30 L 100 53.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 58.88 L 96.5 51.88 L 100 53.63 L 103.5 51.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 120 L 37 60 L 185 60 L 148 120 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(37.5,83.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="109" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 111px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">x = 0, n = 0, sum = 0</div></div></foreignObject><text x="55" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">x = 0, n = 0, sum = 0</text></switch></g><path d="M 100.09 123 L 100.05 153.68" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100.05 158.93 L 96.55 151.92 L 100.05 153.68 L 103.55 151.93 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 160 L 140 200 L 100 240 L 60 200 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(79.5,193.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="40" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 42px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">n &lt;= 10</div></div></foreignObject><text x="20" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">n &lt;= 10</text></switch></g><path d="M 100 240 L 100 273.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 278.88 L 96.5 271.88 L 100 273.63 L 103.5 271.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(90.5,254.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="18" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">Yes</div></div></foreignObject><text x="9" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">Yes</text></switch></g><path d="M 140 200 L 243 200 Q 253 200 253 210 L 253 243.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 253 248.88 L 249.5 241.88 L 253 243.63 L 256.5 241.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(214.5,194.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="14" height="11" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;background-color:#ffffff;">No</div></div></foreignObject><text x="7" y="11" fill="#000000" text-anchor="middle" font-size="11px" font-family="Helvetica">No</text></switch></g><rect x="40" y="280" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(41.5,286.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="116" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 116px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">n = n + 1, x = x + 5, sum = sum + x</div></div></foreignObject><text x="58" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">n = n + 1, x = x + 5, sum = sum + x</text></switch></g><path d="M 40 300 L 30 300 Q 20 300 20 290 L 20 210 Q 20 200 30 200 L 53.63 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 58.88 200 L 51.88 203.5 L 53.63 200 L 51.88 196.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="193" y="250" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(223.5,263.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="58" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 58px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">return sum</div></div></foreignObject><text x="29" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">return sum</text></switch></g><path d="M 253 290 L 253 313.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 253 318.88 L 249.5 311.88 L 253 313.63 L 256.5 311.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><rect x="193" y="320" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(241.5,328.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 22px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g></g></svg>
+                        </div>
+                        <div class="lesson-text">
+                            Ваш скрипт должен вывести в консоль все числа больше 50
+                        </div>
+                        <code>
                     <pre>
 var numbers = [ 254, 115, 78, 25, 91, 45, 37 ]
 for(var i = 0; i < numbers.length; i++) {
     if(numbers[i] > 50) console.log(numbers[i])
 }</pre>
-                </code>
+                        </code>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 02</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                    <div class="lesson-text">
+                        <p>Создайте пустой массив letters</p>
+                        <p>Создайте строку из нескольких слов, например "Backend As A Service"</p>
+                        <p>Напилите код, который разбивает эту строку на массив слов и пушит в массив letters первый символ каждого слова</p>
+                        <p>Выведите результат в консоль</p>
+                        <p>Объедините все элементы массива letters в одну строку и выведите ее в консоль</p>
+                    </div>
+                    <code>
+                    <pre>
+var letters = []
+var str = "Backend As A Service"
+
+for(var i = 0; i < str.split(' ').length; i++) {
+	letters.push(str.split(' ')[i][0]);
+}
+
+console.log(letters.join(' '))</pre>
+                    </code>
+                    <div class="lesson-text">
+                        <p>Объявите функцию с одним формальным параметром, которая проверяет тип данных переданного аргумента и:</p>
+                        <p>• если это число, возвращает текущую дату в формате "20.02.2019, 13:21:51"</p>
+                        <p>• в противном случае возвращает строку "Неверный тип данных"</p>
+                        <p>Вызовите функцию</p>
+                    </div>
+                    <code>
+                    <pre>
+function checkType(arg) {
+	if(typeof arg !== 'number') return  "Неверный тип данных"
+	return new Date().toLocaleString()
+}
+
+checkType('string');
+checkType(5);</pre>
+                    </code>
+                    <div class="lesson-text">
+                        <a href="https://garevna.github.io/js-samples/#01">Перейдите по ссылке</a>
+                        <p>Откройте Chrome DevTools</p>
+                        <p>В панели навигации найдите файл index01.js ( в папке js/ )</p>
+                        <p>Установите breakpoint на строке вызова функции insertUserText ( строка 10 )</p>
+                        <p>Перезагрузите страницу</p>
+                        <p>Теперь обратите внимание на функцию testUserText</p>
+                        <p>Ваша задача: обезопасить свою страницу от внедрения вредоносного кода с помощью функции валидации testUserText</p>
+                        <p>функция должна вывести на страницу текст пользователя безопасным способом т.е. текст должен быть выведен "as is" ( как есть ), но код не должен быть выполнен</p>
+                    </div>
+                    <code>
+                    <pre>
+function testUserText ( userText ) {
+      return userText.split('<').join('&lt;')
+}</pre>
+                    </code>
+                    <div class="lesson-img">
+                        <img src="assets/lesson_2.png">
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function openLessons() {
+        var main = document.querySelector('.lessons');
+        main.addEventListener('click', function (e) {
+            if(e.target.classList.contains('lesson-title')) {
+                var inner = e.target.nextElementSibling
+                if(inner.classList.contains('opened')) {
+                    inner.classList.remove('opened');
+                    inner.style.maxHeight = '0'
+                } else {
+                    inner.classList.add('opened');
+                    console.log(inner.firstElementChild.offsetHeight + 'px');
+                    inner.style.maxHeight = inner.firstElementChild.offsetHeight + 'px'
+                }
+            }
+        })
+    }
+    openLessons()
+</script>
 </body>
 
 </html>
