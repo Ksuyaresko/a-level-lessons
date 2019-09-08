@@ -144,9 +144,7 @@ for(var i = 0; i < numbers.length; i++) {
                         </code>
                     </div>
                 </div>
-
             </div>
-
             <div class="lesson__wrapper">
                 <h2 class="lesson-title">Lesson 02</h2>
                 <div class="lesson-inner">
@@ -204,6 +202,81 @@ function testUserText ( userText ) {
                     <div class="lesson-img">
                         <img src="assets/lesson_2.png">
                     </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 03</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            <p>Объявите функцию без формальных параметров, которая выводит в консоль сама себя и все переданные ей аргументы</p>
+                            <p>Вызовите эту функцию с аргументами 10, false, "google"</p>
+                        </div>
+                        <code>
+                    <pre>
+function showArguments() {
+  console.log(arguments.callee)
+  for(arg of arguments) console.log(arg)
+}
+showArguments(10, false, "google")</pre>
+                        </code>
+                        <div class="lesson-text">
+                            <p>Объявите функцию userInfo, которая выводит в консоль:</p>
+                            <p>свойство "Дата регистрации: " + свойство data контекста вызова, если свойство registered имеет значение true
+                             сообщение "Незарегистрированный пользователь: " + свойство name в противном случае
+                             ( используйте переменные в литералах )</p>
+                            <p>Создайте два объекта с одинаковым набором свойств:</p>
+                            <p>• name ( строка )</p>
+                            <p>• registered ( логическое значение )</p>
+                            <p>• data ( дата в формате "дд.мм.гг" )</p>
+                            <p>Добавьте каждому объекту метод getInfo, который будет ссылкой на функцию userInfo. Вызовите каждый метод</p>
+                        </div>
+                        <code>
+                    <pre>
+function userInfo(){
+  console.log(this.isRegistered ? `Дата регистрации: ${this.date}` : `Незарегистрированный пользователь: ${this.name}`)
+}
+
+var user_1 = {
+    name: 'Vasya',
+    isRegistered: true,
+    date: new Date(2019, 08, 08).toLocaleDateString()
+}
+
+var user_2 = {
+    name: 'Petya',
+    isRegistered: false,
+    date: ''
+}
+
+user_1.getInfo = userInfo;
+user_2.getInfo = userInfo;
+
+user_1.getInfo();
+user_2.getInfo();;</pre>
+                        </code>
+                        <div class="lesson-text">
+                            <p>Есть три объекта: users, posts и comments
+                            <a href="https://garevna.github.io/js-samples/#02">по ссылке</a></p>
+                            <p>Написать код функции getPostComments ( postId ),
+                            которая возвращает массив всех комментариев к посту с идентификатором postId
+                            ( с именем автора комментария и текстом комментария )</p>
+                        </div>
+                        <code>
+<pre>
+function getCurrentPostComments ( postId ) {
+    var res = []
+    for(comment in comments) {
+        if(comments[comment].postId === postId) res.push({
+            author: users[comments[comment].author].name,
+            text: comments[comment].text,})
+	}
+    return res
+}
+ getCurrentPostComments ( 7891451 )</pre>
+                        </code>
                     </div>
                 </div>
             </div>
