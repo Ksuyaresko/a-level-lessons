@@ -280,6 +280,124 @@ function getCurrentPostComments ( postId ) {
                     </div>
                 </div>
             </div>
+
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 04</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            <p>Создайте объект, свойства которого описывают содержимое дамской сумочки</p>
+                            <p>• Создайте метод объекта, позволяющий удалить что-то из сумочки</p>
+                            <p>• Создайте метод объекта, позволяющий положить что-то в сумочку</p>
+                        </div>
+                        <code>
+                            <pre>
+var bag = {
+    stuff: ['документы', 'деньги', 'ключи', 'телефон'],
+    deleteItem: function(item) {
+        var index = this.stuff.indexOf(item)
+        if(!this.stuff.indexOf(item)) return
+        this.stuff.splice(this.stuff.indexOf(item), 1)
+    },
+    addItem: function(item) {
+        this.stuff.push(item)
+    }
+}</pre>
+                        </code>
+
+                        <div class="lesson-text">
+                            <p>Объявить конструктор LibraryBook, с помощью которого можно создавать и редактировать объекты, хранящие информацию о книгах в библиотеке</p>
+                            <p>• title ( название книги ),</p>
+                            <p>• year ( год издания ),</p>
+                            <p>• author ( автор ),</p>
+                            <p>• readerName ( кому выдана ),</p>
+                            <p>• readerData ( когда выдана )</p>
+                            <p>внесение изменений в свойства:</p>
+                            <p>• readerName / client /</p>
+                            <p>• readerData / текущая дата /</p>
+                            <p>• getBookInfo() - посмотреть информацию о наличии книги</p>
+                            <p>( вывести в консоль readerData )</p>
+                            <p>• getTheBook( client ) - получить книгу:</p>
+                            <p>проверка, что книга не выдана на руки</p>
+                        <p>( приватное свойство readerName должно быть пустой строкой )</p>
+                        <p>если выдана - вернуть null</p>
+                        <p>если не выдана, то вызвать приватный метод giveTheBook ( client ) и вернуть bookTitle</p>
+                        <p>• returnBook() - вернуть книгу:</p>
+                            <p>сбросить значения приватных свойств readerName, readerData</p>
+                        </div>
+                        <code>
+                            <pre>
+var LibraryBook = function(title, year, author) {
+    var title = title
+    var year = year
+    var author = author
+    var readerName = ''
+    var readerData = ''
+
+    function giveTheBook(client, date = new Date()) {
+      readerName = client
+      readerData = date
+    }
+
+    this.getBookInfo = function() {
+      var text = readerName ?
+      `Книга выданна: ${readerData}` :
+      `В наличии: ${title}, ${author}, ${year}`
+      console.log(text)
+    }
+
+    this.getTheBook = function(client, date) {
+      if(readerName) return null
+      giveTheBook(client, date)
+      return title
+    }
+
+    this.returnBook = function() {
+      readerName = '', readerData = ''
+    }
+}
+
+var book_1 = new LibraryBook('По ком звонит колокол', 1995, 'Эрнест Хемингуэй')</pre>
+                        </code>
+
+                    <div class="lesson-text">
+                        <p>Объявите конструктор, который создает экземпляры с унаследованным методом addProperty</p>
+                        <p>Метод addProperty должен принимать два аргумента:</p>
+                        <p>• имя свойства</p>
+                        <p>• значение свойства</p>
+                        <p>и добавлять экземпляру новое свойство с указанным именем и значением</p>
+                    </div>
+                    <code>
+                        <pre>
+var SelfCreator = function() {}
+SelfCreator.prototype = {
+	addProperty: function(key, value) {
+    this[key] = value
+  }
+}
+
+var testCreator = new SelfCreator();
+testCreator.addProperty('testPropKey', 'testPropValue')</pre>
+                    </code>
+
+                    </div>
+                </div>
+            </div>
+
+<!--            <div class="lesson__wrapper">-->
+<!--                <h2 class="lesson-title">Lesson 0</h2>-->
+<!--                <div class="lesson-inner">-->
+<!--                    <div class="lesson-inner__wrapper">-->
+<!--                        <div class="lesson-text">-->
+<!--                            <p></p>-->
+<!--                        </div>-->
+<!--                        <code>-->
+<!--                    <pre></pre>-->
+<!--                        </code>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
         </div>
     </div>
 </div>
