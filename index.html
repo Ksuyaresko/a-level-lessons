@@ -384,6 +384,76 @@ testCreator.addProperty('testPropKey', 'testPropValue')</pre>
                 </div>
             </div>
 
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 05</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            <p>Напилить код функции modificator, такой, чтобы в результате работы кода в консоли было: sampleFunc: test | sample</p>
+                        </div>
+                        <code>
+                            <pre>
+function sampleFunc () {
+    console.log ( `${arguments.callee.name}: ${arguments[0]} | ${arguments[1]}` )
+}
+
+function modificator ( func ) {
+    return func.bind(null, 'test', 'sample')
+}
+
+testFunc = modificator( sampleFunc )
+
+testFunc()</pre>
+                        </code>
+                        <div class="lesson-text">
+                            <p>Напилить код функции modificator, такой, чтобы в результате работы кода:
+                                в консоль было выведено число символов в коде функции sampleFunc, т.е.:
+                                Symbols in my code: 93</p>
+                        </div>
+                        <code>
+                            <pre>function sampleFunc () {
+    console.info ( `Symbols in my code: ${arguments.callee + 0}` )
+}
+
+function modificator ( func ) {
+	func.valueOf = () => String(func).length
+}
+
+modificator( sampleFunc )
+
+sampleFunc()</pre>
+                        </code>
+
+                        <div class="lesson-text">
+                            <p>Напилите код функции generateError, такой, чтобы в результате работы кода:</p>
+                            <p>► Application: Invalid arguments</p>
+                            <p>Function needs 3 arguments, but only 1 present</p>
+                        </div>
+                        <code>
+                            <pre>
+function testArguments () {
+    function generateError ( numArgs ) {
+        throw ( {
+                  name: "Application",
+                  message: "Invalid arguments",
+                  stack: `Function needs 3 arguments, but only ${numArgs} present`
+             } )
+    }
+    try {
+        arguments.length >= 3 ? null : generateError ( arguments.length )
+    }
+    catch ( err ) {
+        console.error ( `${err.name}: ${err.message}\n${err.stack}` )
+    }
+}
+
+testArguments ( "Google" )</pre>
+                        </code>
+
+                    </div>
+                </div>
+            </div>
+
 <!--            <div class="lesson__wrapper">-->
 <!--                <h2 class="lesson-title">Lesson 0</h2>-->
 <!--                <div class="lesson-inner">-->
