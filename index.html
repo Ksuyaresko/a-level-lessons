@@ -454,6 +454,113 @@ testArguments ( "Google" )</pre>
                 </div>
             </div>
 
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 06</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            <p>Создайте массив tags с именами валидных тегов HTML5</p>
+                            <p>Теперь создайте массив classes с именами классов</p>
+                            <p>( число элементов в массиве classes должно быть не меньше, чем число элементов массива tags )</p>
+                            <p>Создайте элемент style и вставьте его в head документа</p>
+                            <p>Добавьте контент элемента style с описанием классов, имена которых находятся в массиве classes</p>
+                            <p>Итерируйте массив tags, создавая соответствующие элементы и вставляя их на страницу, добавляя каждому элементу класс из массива classes</p>
+                        </div>
+                        <code>
+                            <pre>
+var tags = ['main', 'section', 'header', 'article', 'footer']
+var classes = ['main', 'section', 'header', 'article', 'footer']
+
+var style = document.createElement('style')
+style.textContent = `
+    .main {min-height: 100px; margin: 10px; border: 1px solid grey;}
+    .section {min-height: 100px; margin: 10px; background-color: #ff0}
+    .header {min-height: 100px; margin: 10px; box-shadow: 1px 1px 3px #505;}
+    .article {min-height: 100px; margin: 20px 10px; background-color: #f0f}
+    .footer {min-height: 100px; margin: 10px; border: 2px dotted #0ff}
+`
+document.head.appendChild(style);
+for(var i = 0; i < tags.length; i++) {
+    document.body.appendChild(document.createElement(tags[i]))
+        .classList.add(classes[i])
+}</pre>
+                        </code>
+                        <div class="lesson-text">
+                            <p>Результат должен быть аналогичен тому, что получится в предыдущем упражнении </p>
+                            <p>Однако исходный массив tags должен быть массивом объектов, каждый из которых содержит не только имя тега элемента, но и его атрибуты, а так же хотя бы один обработчик события </p>
+                            <p>Таким образом, массив classes нам уже не нужен, но кроме стилизации элементов нужно еще добавить их контент, используя как атрибуты тегов, так и свойства элементов DOM</p>
+                        </div>
+                        <code>
+                            <pre>
+var tags = [{
+name: 'main',
+class: 'main',
+text: "Hi, UserName",
+attrs: {
+	onclick: `console.log(event)`
+	},
+}, {
+name: 'section',
+class: 'section',
+attrs: {
+	onclick: `console.log(event)`
+	},
+}, {
+name: 'header',
+class: 'header',
+attrs: {
+	onclick: `console.log(event)`
+	},
+}, {
+name: 'article',
+class: 'article',
+text: "Article",
+attrs: {
+	onclick: `console.log(event)`
+	},
+}, {
+name: 'footer',
+class: 'footer',
+attrs: {
+	onclick: `console.log(event)`
+	},
+}]
+
+var style = document.createElement('style')
+style.textContent = `
+    .main {min-height: 100px; margin: 10px; border: 1px solid grey;}
+    .section {min-height: 100px; margin: 10px; background-color: #ff0}
+    .header {min-height: 100px; margin: 10px; box-shadow: 1px 1px 3px #505;}
+    .article {min-height: 100px; margin: 20px 10px; background-color: #f0f}
+    .footer {min-height: 100px; margin: 10px; border: 2px dotted #0ff}
+`
+document.head.appendChild(style);
+
+for(var tag of tags) {
+    var el = document.body.appendChild(document.createElement(tag.name))
+    if(tag.text) el.textContent = tag.text
+	if(tag.class) el.classList.add(tag.class)
+	for ( var attr in tag.attrs )  {
+        el.setAttribute ( attr, tag.attrs[attr] )
+	}
+}</pre>
+                        </code>
+
+                        <div class="lesson-text">
+                            <p>Напилить код, который выбирает все элементы-потомки body (  кроме элементов script ) и добавляет им класc:</p>
+                            <p>.redBack {
+                                background-color: red!important;
+                                    }</p>
+                            <p>Запустить код в консоли любой страницы</p>
+                            <p>Подсказка: используйте методы объекта classList</p>
+                        </div>
+                        <code>
+                            <pre></pre>
+                        </code>
+                    </div>
+                </div>
+            </div>
+
 <!--            <div class="lesson__wrapper">-->
 <!--                <h2 class="lesson-title">Lesson 0</h2>-->
 <!--                <div class="lesson-inner">-->
@@ -476,13 +583,12 @@ testArguments ( "Google" )</pre>
         var main = document.querySelector('.lessons');
         main.addEventListener('click', function (e) {
             if(e.target.classList.contains('lesson-title')) {
-                var inner = e.target.nextElementSibling
+                var inner = e.target.nextElementSibling;
                 if(inner.classList.contains('opened')) {
                     inner.classList.remove('opened');
                     inner.style.maxHeight = '0'
                 } else {
                     inner.classList.add('opened');
-                    console.log(inner.firstElementChild.offsetHeight + 'px');
                     inner.style.maxHeight = inner.firstElementChild.offsetHeight + 'px'
                 }
             }
