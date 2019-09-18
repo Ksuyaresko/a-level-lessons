@@ -555,7 +555,19 @@ for(var tag of tags) {
                             <p>Подсказка: используйте методы объекта classList</p>
                         </div>
                         <code>
-                            <pre></pre>
+                            <pre>
+document.head.appendChild(document.createElement('style')).textContent = `
+.redBack {
+    background-color: red!important;
+}`
+function getAllChild(elem) {
+    if(elem.children.length) {
+        for(el of elem.children) getAllChild(el)
+    }
+    if(elem.tagName !== 'SCRIPT')elem.classList.add('redBack')
+}
+getAllChild(document.body)
+                            </pre>
                         </code>
                     </div>
                 </div>
