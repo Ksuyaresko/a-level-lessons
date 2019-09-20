@@ -1,0 +1,107 @@
+html {
+    overflow: overlay;
+}
+body {
+    margin: 0;
+    font-size: 18px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: #606c71;
+}
+* {
+    box-sizing: border-box;
+}
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    flex-grow: 1;
+}
+.header {
+    color: #fff;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, #155799, #159957);
+    text-align: right;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 6px #0a1d0e;
+    position: sticky;
+    top: 0;
+}
+.author {
+    font-size: 20px;
+    margin: 0 0 20px;
+
+}
+.lesson-title {
+    font-size: 30px;
+    padding: 30px 50px;
+    margin: 0;
+    font-weight: normal;
+    color: #159957;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lesson-title:after {
+    content: '';
+    display: block;
+    border-top: 10px solid #159957;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.lesson-img {
+    padding: 10px 0;
+}
+.header__wrapper {
+    max-width: 1200px;
+    padding: 50px;
+    margin: 0 auto;
+}
+.lesson__wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+pre {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(21, 153, 87, 0.05);
+    border: 1px solid rgba(21, 153, 87, 0.51);
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    overflow: auto;
+}
+
+.preview {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(21, 153, 87);
+}
+.lesson-text {
+    padding: 5px 1rem;
+    margin: 40px 0 0;
+    max-width: 900px;
+    color: #819198;
+    border-left: 0.3rem solid #dce6f0;
+}
+.lesson-text p {margin: 3px 0;}
+.footer {
+    background-color: rgba(21, 153, 87, 0.05);
+    min-height: 70px;
+    border-top: 1px solid rgba(21, 153, 87, 0.51);
+}
+.lesson-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s;
+}
+.lesson__wrapper:last-child .lesson-inner {
+    max-height: none;
+}
+.lesson-inner__wrapper {
+    padding: 0 50px 50px;
+}
