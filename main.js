@@ -35,7 +35,7 @@ codePreview('demo_7_1', showDemo71);
 function showDemo72() {
     var collection = ['main', 'section', 'header', 'article'];
     var titles = ["first", "second", "third", "fourth"];
-
+    var container = document.getElementById('demo_7_2');
     function over ( event ) {
         event.target.style.backgroundColor = '#ffff0050'
     }
@@ -47,8 +47,6 @@ function showDemo72() {
         event.target.parentElement.removeChild(event.target);
     }
 
-    var container = document.getElementById('demo_7_2')
-
     titles.forEach (
         function ( tag, index  ) {
             var el = container.appendChild(document.createElement(collection[index]));
@@ -56,11 +54,9 @@ function showDemo72() {
                         background-color: #ff00ff50;
                         border: dotted 1px yellow;`;
             el.title = titles[index];
-
             el.addEventListener('mouseout', out);
             el.addEventListener('mouseover', over);
             el.addEventListener('click', clickHandler);
-
             container = el
         }
     )
@@ -69,10 +65,14 @@ function showDemo72() {
 showDemo72();
 codePreview('demo_7_2', showDemo72);
 
+function codePreview(id, func) {
+    document.getElementById(id).nextElementSibling.textContent = func;
+}
+
 function showDemo73() {
     var collection = ['main', 'section', 'header', 'article'];
     var titles = [1, 2, 3, 4, 5, 6, 7];
-
+    var container = document.getElementById('demo_7_3');
     function over ( event ) {
         event.target.style.backgroundColor = '#ffff0050'
     }
@@ -81,23 +81,31 @@ function showDemo73() {
     }
     function clickHandler ( event ) {
         event.stopPropagation();
-        event.target.parentElement.removeChild(event.target);
+        var target = event.target;
+        if(!target) return;
+        var allChildren = [];
+        while(target.children.length) {
+            allChildren.push(target.children[0]);
+            target = target.children[0]
+        }
+        var parent =  event.target.parentElement;
+        parent.removeChild(event.target);
+        for(var el of allChildren) {
+            parent.appendChild(el);
+            parent = el
+        }
     }
-
-    var container = document.getElementById('demo_7_2')
 
     titles.forEach (
         function ( tag, index  ) {
-            var el = container.appendChild(document.createElement(collection[index]));
+            var el = container.appendChild(document.createElement(collection[index] || 'div'));
             el.style = `padding: 50px;
                         background-color: #ff00ff50;
                         border: dotted 1px yellow;`;
             el.title = titles[index];
-
             el.addEventListener('mouseout', out);
             el.addEventListener('mouseover', over);
             el.addEventListener('click', clickHandler);
-
             container = el
         }
     )
