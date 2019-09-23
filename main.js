@@ -70,8 +70,7 @@ function codePreview(id, func) {
 }
 
 function showDemo73() {
-    var collection = ['main', 'section', 'header', 'article'];
-    var titles = [1, 2, 3, 4, 5, 6, 7];
+    var collection = ['main', 'section', 'header', 'article', 'div', 'div', 'div'];
     var container = document.getElementById('demo_7_3');
     function over ( event ) {
         event.target.style.backgroundColor = '#ffff0050'
@@ -81,28 +80,22 @@ function showDemo73() {
     }
     function clickHandler ( event ) {
         event.stopPropagation();
-        var target = event.target;
-        if(!target) return;
-        var allChildren = [];
-        while(target.children.length) {
-            allChildren.push(target.children[0]);
-            target = target.children[0]
-        }
-        var parent =  event.target.parentElement;
-        parent.removeChild(event.target);
-        for(var el of allChildren) {
-            parent.appendChild(el);
-            parent = el
-        }
+        event.target.children[0] ?
+            event.target.parentNode.appendChild (
+                event.target.parentNode
+                    .removeChild( event.target ).children[0]
+            ) :
+            event.target.parentNode
+                .removeChild( event.target )
     }
 
-    titles.forEach (
+    collection.forEach (
         function ( tag, index  ) {
-            var el = container.appendChild(document.createElement(collection[index] || 'div'));
+            var el = container.appendChild(document.createElement(tag));
             el.style = `padding: 50px;
                         background-color: #ff00ff50;
                         border: dotted 1px yellow;`;
-            el.title = titles[index];
+            el.title = index + 1;
             el.addEventListener('mouseout', out);
             el.addEventListener('mouseover', over);
             el.addEventListener('click', clickHandler);
