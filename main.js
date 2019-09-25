@@ -106,3 +106,75 @@ function showDemo73() {
 
 showDemo73();
 codePreview('demo_7_3', showDemo73);
+
+// lesson 08
+function showDemo81() {
+    let time =  new Date();
+    let el = document.getElementById('demo_8_1')
+                        .appendChild(document.createElement('span'));
+    let updateTime = () => {
+        el.innerHTML = `${new Date().toLocaleTimeString()}`;
+        new Date() - time < 100000 ?
+            requestAnimationFrame ( updateTime ) :
+                el.innerHTML = '100 seconds passed :('
+    }
+    updateTime()
+}
+showDemo81();
+codePreview('demo_8_1', showDemo81);
+
+function showDemo82() {
+    var typeMessage = ( function ( velocity ) {
+        let container = document.getElementById ( "demo_8_2" ) ?
+            document.getElementById ( "demo_8_2" ) :
+            document.body.appendChild (
+                document.createElement ( "h3" )
+            );
+        container.style = `color: magenta;`
+        var index = 1;
+        return function ( message ) {
+            let show = () => {
+                container.innerHTML = message.substring(0, index);
+                index < message.length ? setTimeout(show, 1000) : null
+                index++;
+            }
+            setTimeout(show, 1000)
+        }
+    })( 1 )
+
+    typeMessage ( `Welcome to the hell` )
+}
+
+showDemo82();
+codePreview('demo_8_2', showDemo82);
+
+function showDemo83() {
+    function User ( name ) {
+        this.name = name;
+        this.id = this.counter();
+        this.counter = () => this.id
+    }
+
+    User.prototype = {
+        counter: (() => {
+            var count = 0;
+            return () => count++
+        })()
+    };
+
+    var users = [
+        new User ( "Семен" ),
+        new User ( "Антон" ),
+        new User ( "Демьян" ),
+        new User ( "Василий" )
+    ];
+    users[1].id = users[1].counter();
+
+    User.prototype.toString = function() {
+        return `{name: ${this.name}; id: ${this.id}}`
+    }
+    document.getElementById ( "demo_8_3" ).innerHTML = users
+}
+
+showDemo83();
+codePreview('demo_8_3', showDemo83);
