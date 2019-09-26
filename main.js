@@ -133,12 +133,9 @@ function showDemo82() {
         container.style = `color: magenta;`
         var index = 1;
         return function ( message ) {
-            let show = () => {
-                container.innerHTML = message.substring(0, index);
-                index < message.length ? setTimeout(show, 1000) : null
-                index++;
-            }
-            setTimeout(show, 1000)
+            container.innerHTML = message.substring(0, index);
+            index++ < message.length ?
+                setTimeout(arguments.callee.bind(null, message), 1000) : null;
         }
     })( 1 )
 
