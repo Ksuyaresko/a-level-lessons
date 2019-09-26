@@ -149,13 +149,14 @@ function showDemo83() {
     function User ( name ) {
         this.name = name;
         this.id = this.counter();
-        this.counter = () => this.id
     }
 
     User.prototype = {
         counter: (() => {
             var count = 0;
-            return () => count++
+            return function() {
+                return this.id !== undefined ? this.id : count++
+            }
         })()
     };
 
