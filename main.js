@@ -251,7 +251,7 @@ function showDemo93() {
 
     let changeClass = ( classname, styleString ) => (
         Array.from ( document.styleSheets ).reduce((res, styleSheet, index, styleSheetArr) => {
-            Array.from ( styleSheet.cssRules ).forEach((selector, selectorIndex, ) => {
+            !styleSheet.href && Array.from ( styleSheet.cssRules ).forEach((selector, selectorIndex, ) => {
                     if(selector.selectorText === `.${classname}`) {
                         styleSheet.addRule(selector.selectorText, styleString, selectorIndex);
                         res = styleSheetArr;
