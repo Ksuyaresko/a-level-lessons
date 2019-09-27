@@ -1,16 +1,4 @@
-html {
-    overflow: overlay;
-}
-body {
-    margin: 0;
-    font-size: 18px;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    color: #606c71;
-}
-* {
-    box-sizing: border-box;
-}
+
 .wrapper {
     min-height: 100vh;
     display: flex;

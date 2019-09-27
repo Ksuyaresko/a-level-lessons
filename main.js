@@ -176,3 +176,103 @@ function showDemo83() {
 
 showDemo83();
 codePreview('demo_8_3', showDemo83);
+
+// lesson 08
+
+function showDemo91() {
+    function typeMessage ( message, velocity ) {
+        var container = document.getElementById ( "demo_9_1" ) ?
+            document.getElementById ( "demo_9_1" ) :
+            document.body.appendChild (
+                document.createElement ( "h3" )
+            );
+        container.style = `color: magenta;`;
+        message.split('').reduce((res, item, index) => {
+            setTimeout(() => {
+                container.innerText = res}, index*1000);
+            return res + item
+        }, '')
+    }
+
+    typeMessage ( `Welcome to the hell`, 1 )
+}
+
+showDemo91();
+codePreview('demo_9_1', showDemo91);
+
+function showDemo92() {
+    var users = (
+        function ( list ) {
+            var users = [];
+            for ( var user of list )
+                users.push ({
+                    name: user,
+                    present: false
+                });
+
+            return {
+                setUserPresent ( userName, present ) {
+                    users.forEach((item) => {
+                        item.name === userName ? item.present = !!present : null
+                    })
+                },
+                showPresent () {
+                    let presentUsers = [];
+                    users.filter((user) => user.present)
+                         .forEach((user) => { presentUsers.push(user.name)});
+                    return presentUsers
+                },
+                showAbsent () {
+                    let absentUsers = [];
+                    users.filter((user) => !user.present)
+                         .forEach((user) => { absentUsers.push(user.name)});
+                    return absentUsers
+                }
+            }
+        }
+    )( [ "Иван", "Дмитрий", "Степан", "Михаил" ] )
+
+    const container = document.getElementById ( "demo_9_2" );
+    container.appendChild(document.createElement('div'))
+        .innerText = `Absent: ${users.showAbsent()}`
+
+    users.setUserPresent( "Иван", "+" )
+    users.setUserPresent( "Михаил", "присутствовал" )
+    users.setUserPresent( "Степан", true )
+
+    container.appendChild(document.createElement('div'))
+        .innerText = `Present: ${users.showPresent()}`
+}
+
+showDemo92();
+codePreview('demo_9_2', showDemo92);
+
+function showDemo93() {
+    const container = document.getElementById ( "demo_9_3" );
+    container.className += ' second-level-menu';
+    container.textContent = 'has class second-level-menu';
+
+    let changeClass = ( classname, styleString ) => (
+        Array.from ( document.styleSheets ).reduce((res, styleSheet, index, styleSheetArr) => {
+            Array.from ( styleSheet.cssRules ).forEach((selector, selectorIndex, ) => {
+                    if(selector.selectorText === `.${classname}`) {
+                        styleSheet.addRule(selector.selectorText, styleString, selectorIndex);
+                        res = styleSheetArr;
+                    }
+                });
+                return res
+        }, [])
+    ).length > 0 ? console.log ( "found" ) :
+        document.head.appendChild (
+            document.createElement ( "style" )
+        ).textContent = `.${classname} {${styleString}}`
+
+    changeClass (
+        "second-level-menu",
+        "background-color: red!important;"
+    )
+
+}
+
+showDemo93();
+codePreview('demo_9_3', showDemo93);
