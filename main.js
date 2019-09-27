@@ -189,7 +189,8 @@ function showDemo91() {
         container.style = `color: magenta;`;
         message.split('').reduce((res, item, index) => {
             setTimeout(() => {
-                container.innerText = res}, index*1000);
+                container.innerText = res
+            }, index*1000);
             return res + item
         }, '')
     }
@@ -217,16 +218,12 @@ function showDemo92() {
                     })
                 },
                 showPresent () {
-                    let presentUsers = [];
-                    users.filter((user) => user.present)
-                         .forEach((user) => { presentUsers.push(user.name)});
-                    return presentUsers
+                    return users.filter((user) => user.present)
+                                .map((user) => user.name);
                 },
                 showAbsent () {
-                    let absentUsers = [];
-                    users.filter((user) => !user.present)
-                         .forEach((user) => { absentUsers.push(user.name)});
-                    return absentUsers
+                    return users.filter((user) => !user.present)
+                                .map((user) => user.name);
                 }
             }
         }
