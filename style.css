@@ -96,3 +96,36 @@ pre {
 .lesson-inner__wrapper {
     padding: 0 50px 50px;
 }
+
+.demo103_info {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#demo_10_3 textarea {
+    border: 1px solid rgba(21, 153, 87, 0.51);
+    color: inherit;
+    font-family: inherit;
+    padding: 10px;
+    resize: none;
+}
+
+#demo_10_3 textarea:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(21, 153, .87);
+}
+
+.demo103_avatar {
+    height: 50px;
+    width: 50px;
+    margin: 0 15px 0 0;
+    background: rgba(21, 153, 87, 0.51);
+    border-radius: 50%;
+    padding: 5px;
+    text-align: center;
+}
+
+.demo103_info img {
+    max-height: 100%;
+}
