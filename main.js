@@ -411,3 +411,132 @@ function showDemo103(id) {
 
 showDemo103('demo_10_3')
 codePreview('demo_10_3', showDemo103);
+
+// lesson 11
+
+function showDemo111(id) {
+
+}
+
+showDemo111('demo_11_1')
+codePreview('demo_11_1', showDemo111);
+
+function showDemo111(id) {
+    function loadJson ( sourceURL ) {
+        return new Promise( function ( resolve, reject ) {
+            var request = new XMLHttpRequest ()
+            request.onreadystatechange = function () {
+                var data = request.responseText
+                if ( request.readyState === 4 ) {
+                    if ( request.status === 200 )
+                        resolve ( data )
+                    else reject ( data )
+                }
+            }
+            request.open ( "GET", sourceURL );
+            request.send ()
+        })
+    }
+
+    function getData( url ) {
+        loadJson( url )
+            .then ( function ( response ) {
+
+                const container = document.getElementById(id);
+
+                JSON.parse(response).forEach( img => {
+                    let imgBox = container.appendChild(document.createElement('div'));
+                    imgBox.appendChild(document.createElement('img'))
+                        .src = img.url;
+                    imgBox.appendChild(document.createElement('div'))
+                        .textContent = img.title;
+                })
+            })
+            .catch ( function ( err ) { console.log ( err ) })
+    }
+
+    getData('images.json')
+}
+
+showDemo111('demo_11_1');
+codePreview('demo_11_1', showDemo111);
+
+function showDemo112(id) {
+    var messages = [
+        "backspace",
+        "enter",
+        "shift",
+        "control",
+        "delete",
+        "space",
+        "subtract"
+    ]
+
+    messages.getKey = () => {
+        var key = new Date().toLocaleString().split(", ")[1]
+        return log [ key ] ? log [ key + "[2]" ] ? key + "[3]" : key + "[2]" : key
+    }
+
+    var log = {};
+
+    var sendMessage = message => new Promise (
+        resolve => setTimeout (
+            () => resolve ( message ),
+            Math.random () * 7000
+        )
+    )
+
+    messages.forEach( item => {
+        sendMessage( item ).then(message => {
+            Object.assign( log, {[messages.getKey()]: message} );
+            document.getElementById(id).textContent = log
+        })
+    })
+}
+
+showDemo112('demo_11_2')
+codePreview('demo_11_2', showDemo112);
+
+function showDemo113(id) {
+    var messages = [
+        "backspace",
+        "enter",
+        "shift",
+        "control",
+        "delete",
+        "space",
+        "subtract"
+    ]
+
+    messages.getKey = () => new Date().toLocaleString().split(", ")[1];
+
+    var log = {};
+
+    var sendMessage = message => new Promise (
+        resolve => setTimeout (
+            () => resolve ( message ),
+            Math.random () * 7000
+        )
+    )
+
+    var sendAll = () => {
+        var index = 0;
+        function recursive () {
+            sendMessage( messages[index++] )
+                .then(message => {
+                    Object.assign( log, {[messages.getKey()]: message} );
+                    document.getElementById(id).textContent = log
+                })
+                .then(() => recursive () )
+        }
+        recursive ()
+    }
+
+    sendAll()
+}
+
+showDemo113('demo_11_3');
+codePreview('demo_11_3', showDemo113);
+
+
+
