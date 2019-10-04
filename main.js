@@ -415,13 +415,6 @@ codePreview('demo_10_3', showDemo103);
 // lesson 11
 
 function showDemo111(id) {
-
-}
-
-showDemo111('demo_11_1')
-codePreview('demo_11_1', showDemo111);
-
-function showDemo111(id) {
     function loadJson ( sourceURL ) {
         return new Promise( function ( resolve, reject ) {
             var request = new XMLHttpRequest ()
@@ -441,9 +434,7 @@ function showDemo111(id) {
     function getData( url ) {
         loadJson( url )
             .then ( function ( response ) {
-
                 const container = document.getElementById(id);
-
                 JSON.parse(response).forEach( img => {
                     let imgBox = container.appendChild(document.createElement('div'));
                     imgBox.appendChild(document.createElement('img'))
