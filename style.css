@@ -16,6 +16,7 @@
     box-shadow: 1px 1px 6px #0a1d0e;
     position: sticky;
     top: 0;
+    z-index: 2;
 }
 .author {
     font-size: 20px;
