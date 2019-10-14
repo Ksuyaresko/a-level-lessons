@@ -485,7 +485,7 @@ function showDemo112(id) {
     })
 }
 
-showDemo112('demo_11_2')
+showDemo112('demo_11_2');
 codePreview('demo_11_2', showDemo112);
 
 function showDemo113(id) {
@@ -497,7 +497,7 @@ function showDemo113(id) {
         "delete",
         "space",
         "subtract"
-    ]
+    ];
 
     messages.getKey = () => new Date().toLocaleString().split(", ")[1];
 
@@ -508,7 +508,7 @@ function showDemo113(id) {
             () => resolve ( message ),
             Math.random () * 7000
         )
-    )
+    );
 
     var sendAll = () => {
         var index = 0;
@@ -521,7 +521,7 @@ function showDemo113(id) {
                 .then(() => recursive () )
         }
         recursive ()
-    }
+    };
 
     sendAll()
 }
@@ -529,5 +529,78 @@ function showDemo113(id) {
 showDemo113('demo_11_3');
 codePreview('demo_11_3', showDemo113);
 
+// lesson 12
+
+function showDemo121(id) {
+    const res = document.cookie
+        .split ( "; " )
+        .filter(item => item.indexOf('lastvisit') !== -1);
+
+    document.getElementById(id).textContent = res.length ?
+        `Your last visit: ${res[0].split(';')[0].split('=')[1]}` :
+        'This is your first visit';
+    var expDate = new Date (
+        new Date(new Date().setMonth(new Date().getMonth() + 1))
+    );
+
+    document.cookie = `lastvisit=${new Date().toLocaleString()}; expires=${expDate}`
+}
+
+showDemo121('demo_12_1');
+codePreview('demo_12_1', showDemo121);
+
+function showDemo122(id) {
+    window.addEventListener('hashchange', function (event) {
+        localStorage.setItem ( "pageId", location.hash );
+        localStorage.setItem ( "startTime", new Date().getTime() );
+        document.getElementById(id).textContent = `Welcome to page ${location.hash.substring(1)}`
+    })
+}
+
+showDemo122('demo_12_2');
+codePreview('demo_12_2', showDemo122);
+
+function showDemo123(id) {
+    const container = document.getElementById(id);
+    const btn = container.appendChild(document.createElement('div'));
+    btn.className = 'btn';
+    btn.textContent = 'Click me';
+    btn.onclick = function (event) {
+        btn.style.display = 'none';
+        const image = new Image();
+        image.style.transition = "all 0.5s";
+        image.src = 'https://thumbs.gfycat.com/LivelyObviousAnhinga-size_restricted.gif';
+        container.appendChild(image);
+        let winnwer = Math.round ( Math.random() * 20000 );
+        let userName;
+        function showWinner( photoURL, login ) {
+            image.src = photoURL;
+            userName = container.appendChild(document.createElement('h4'));
+            userName.innerText = `winner: ${login}`
+        }
+
+        setTimeout(() => {
+            image.style.opacity = "0";
+            setTimeout(() => {
+                image.src = 'https://thumbs.gfycat.com/OddWideHookersealion-small.gif';
+                image.style.opacity = "1";
+                let winnerInfo = fetch ( `https://api.github.com/users?since=${winnwer}` );
+                setTimeout(() => {
+                    winnerInfo.then ( response => response.json()
+                        .then ( users => showWinner ( users[0].avatar_url, users[0].login ) )
+                    );
+                    setTimeout(() => {
+                        image.remove();
+                        userName.remove();
+                        btn.style.display = '';
+                    }, 10000)
+                }, 1000)
+            }, 1000)
+        }, 2500 );
+    }
+}
+
+showDemo123('demo_12_3');
+codePreview('demo_12_3', showDemo123);
 
 
