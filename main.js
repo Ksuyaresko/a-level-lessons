@@ -604,3 +604,122 @@ showDemo123('demo_12_3');
 codePreview('demo_12_3', showDemo123);
 
 
+// lesson 13
+
+function showDemo131(id) {
+    const image = document.getElementById(id).appendChild(document.createElement('img'))
+    fetch('https://picsum.photos/200/300')
+        .then(response => response.blob())
+        .then(data => image.src = URL.createObjectURL(data))
+}
+
+showDemo131('demo_13_1');
+codePreview('demo_13_1', showDemo131);
+
+function showDemo132(id) {
+    const addElem = tagName => document.getElementById(id).appendChild (
+        document.createElement ( tagName )
+    );
+
+    const selector = addElem ( 'input' );
+    selector.type = 'file';
+    selector.multiple = true;
+    selector.id = 'selectImages';
+    selector.style.display = 'none';
+
+    var label = addElem ( 'label' );
+
+    label.htmlFor = 'selectImages';
+    label.innerText = 'Select images';
+    label.className = 'btn';
+
+    var testFile = file => new Promise (
+        (resolve, reject) => {
+            if(file.type.indexOf('image') !== 0) reject(new Error('Select images only!'));
+            var reader = new FileReader ();
+            reader.onload = (event) => {
+                resolve(event.target.result)
+            }
+            reader.readAsDataURL(file);
+        }
+    )
+
+    selector.onchange = function ( event ) {
+        for ( var file of event.target.files ) {
+            testFile ( file )
+                .then ( result => addElem ( "img" ).src = result )
+                .catch ( error => addElem ( "div" ).textContent = error )
+        }
+    }
+}
+
+showDemo132('demo_13_2');
+codePreview('demo_13_2', showDemo132);
+
+function showDemo133(id) {
+    const container = document.getElementById(id);
+    const btn = container.querySelector('button');
+    btn.disabled = true;
+
+    const validInputs = {
+        title: false,
+        text: false,
+        image: false
+    };
+
+    function validate() {
+        for(let key in validInputs) {
+            if(!validInputs[key]) return true
+        }
+        return false
+    }
+
+    const image = container.querySelector('input[type="file"]');
+
+    image.onchange = function(event) {
+        event.target.files[0].type.indexOf('image') === 0 && event.target.files[0].size <= 200000 ?
+            validInputs.image = true :
+            validInputs.image = false;
+
+        btn.disabled = validate();
+    };
+
+    container.querySelectorAll('input[type="text"]').forEach(input => {
+        input.oninput = function (event) {
+            event.target.value ?
+                validInputs[event.target.name] = true :
+                validInputs[event.target.name] = false;
+
+            btn.disabled = validate();
+        }
+    });
+
+    btn.onclick = function(event) {
+        event.preventDefault();
+
+        const form = new FormData(container.querySelector('form'));
+        const reader = new FileReader();
+        const resultEl = container.querySelector('.form-results');
+
+        reader.onload = function(readerEvent) {
+            form.append('image', readerEvent.target.result);
+            fetch('http://ptsv2.com/t/kiaresko/post', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    "Content-Type": "form/multipart"
+                },
+                body: form
+            })
+                .then(response => resultEl.innerHTML = `<a href=http://ptsv2.com/t/kiaresko>Your info is here</a>`)
+                .catch(er => resultEl.innerHTML = er)
+        }
+
+        reader.readAsDataURL(image.files[0])
+    }
+}
+
+showDemo133('demo_13_3');
+codePreview('demo_13_3', showDemo133);
+
+

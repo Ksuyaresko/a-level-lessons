@@ -654,12 +654,65 @@ getAllChild(document.body)
                                     ( например, изменялся заголовок и картинка, чтобы создать иллюзию перехода на новую страницу )</p>
                                 <p>Отслеживать в панели разработчика изменения в localStorage</p>
                         </div>
-                        <div class="preview" id="demo_12_2"></div>
+                        <div class="preview" id="demo_12_2">
+                            <a href="#new_page">Click me to change hash</a>
+                        </div>
                         <pre></pre>
                         <div class="lesson-text">
                             <p>Рулетка</p>
                         </div>
                         <div class="preview" id="demo_12_3"></div>
+                        <pre></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson__wrapper">
+                <h2 class="lesson-title">Lesson 13</h2>
+                <div class="lesson-inner">
+                    <div class="lesson-inner__wrapper">
+                        <div class="lesson-text">
+                            <p>Blob</p>
+                            <p>Загрузить картинку из сети с помощью fetch в виде объекта Blob</p>
+                            <p>Создать временную ссылку на полученный объект</p>
+                            <p>Разместить изображение на странице</p>
+                        </div>
+                        <div class="preview" id="demo_13_1"></div>
+                        <pre></pre>
+                        <div class="lesson-text">
+                            <p>Функция testFile должна проверять, является ли выбранный файл изображением, и если нет - выводить сообщение "Выбранный файл не является изображением"</p>
+                        </div>
+                        <div class="preview" id="demo_13_2"></div>
+                        <pre></pre>
+                        <div class="lesson-text">
+                            <p>Создать форму с полями:</p>
+                            <p>Заголовок сообщения</p>
+                            <p>Тест сообщения</p>
+                            <p>Иконка</p>
+                            <p>Добавить форму на страницу http://ptsv2.com</p>
+                            <p>Назначить обработчика события submit формы</p>
+                            <p>Обработчик должен:</p>
+                            <p>Создать объект класса FormData</p>
+                            <p>Передать в него введенные значения из формы</p>
+                            <p>Отправить данные формы на сервер</p>
+                        </div>
+                        <div class="preview" id="demo_13_3">
+                            <form class="form">
+                                Enter fields:
+                                <div class="input-wrapper"><input name="title" type="text" placeholder="title"></div>
+                                <div class="input-wrapper"><input name="text" type="text" placeholder="text"></div>
+                                <div class="input-file-wrapper">
+                                    <input type="file" id="file-input-13-3">
+                                    <label class="btn" for="file-input-13-3">Select icon</label>
+                                </div>
+                                <div class="input-wrapper"><button class="btn">Submit</button></div>
+                            </form>
+                            <div class="form-results"></div>
+                            <div class="form-results-img">
+                                <div>Result image:</div>
+                                <img src="assets/submit-result.png" class="result-img"/>
+                            </div>
+                        </div>
                         <pre></pre>
                     </div>
                 </div>
