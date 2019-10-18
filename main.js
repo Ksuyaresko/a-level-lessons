@@ -722,4 +722,31 @@ function showDemo133(id) {
 showDemo133('demo_13_3');
 codePreview('demo_13_3', showDemo133);
 
+// lesson 14
+
+function showDemo142(id) {
+    function printString ( text, container ) {
+        let demo = container && container.nodeType === 1 ?
+            container : document.body.appendChild (
+                document.createElement ( "div" )
+            );
+
+        let index = 0;
+        async function showLetter() {
+            await setTimeout()
+        }
+
+        demo.appendChild (
+            document.createTextNode(
+                ...
+            )
+        )
+    }
+
+    printString ('this is test text string', document.getElementById(id))
+}
+
+showDemo142('demo_14_2');
+codePreview('demo_14_2', showDemo142);
+
 
