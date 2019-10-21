@@ -725,28 +725,62 @@ codePreview('demo_13_3', showDemo133);
 // lesson 14
 
 function showDemo142(id) {
-    function printString ( text, container ) {
-        let demo = container && container.nodeType === 1 ?
-            container : document.body.appendChild (
-                document.createElement ( "div" )
-            );
+    let container = document.getElementById(id);
+    let demo = container && container.nodeType === 1 ?
+        container : document.body.appendChild (
+            document.createElement ( "div" )
+        );
 
-        let index = 0;
-        async function showLetter() {
-            await setTimeout()
-        }
-
-        demo.appendChild (
-            document.createTextNode(
-                ...
-            )
-        )
+    function printString ( text ) {
+        return new Promise(function (resolve) {
+            setTimeout( () => {
+                resolve(text)
+            }, 1000)
+        })
     }
 
-    printString ('this is test text string', document.getElementById(id))
+    async function asyncPrint (text) {
+        for(let letter of text) {
+            demo.appendChild (
+                document.createTextNode(
+                    await printString(letter)
+                )
+            )
+        }
+    }
+
+    asyncPrint ('Hi, I\'m a test string')
 }
 
 showDemo142('demo_14_2');
 codePreview('demo_14_2', showDemo142);
+
+function showDemo143(id) {
+    let container = document.getElementById(id);
+    let demo = container && container.nodeType === 1 ?
+        container : document.body.appendChild (
+            document.createElement ( "div" )
+        );
+
+    (async function (text, index) {
+        const printText = new Promise(function (resolve) {
+            setTimeout(
+                () => { resolve(text.substr(index, 1)) },
+                1000
+            )
+        });
+
+         demo.appendChild (
+            document.createTextNode(
+                await printText
+            )
+        ) ;
+
+        index < text.length ? arguments.callee(text, index+1) : null
+    })('Hi, I\'m a test string', 0);
+}
+
+showDemo143('demo_14_3');
+codePreview('demo_14_3', showDemo143);
 
 
