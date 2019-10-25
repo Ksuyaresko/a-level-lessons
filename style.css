@@ -61,6 +61,7 @@ pre {
     background-color: rgba(21, 153, 87, 0.05);
     border: 1px solid rgba(21, 153, 87, 0.51);
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    max-height: 700px;
     overflow: auto;
 }
 

@@ -5,21 +5,24 @@
       "name": "Владимир",
       "lastName": "Кононенко",
       "email": "vladimir.kononenko@gmail.com",
-      "photoURL": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      "photoURL": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+      "active": true
     },
     {
       "id": 2,
       "name": "Никита",
       "lastName": "Терещенко",
       "email": "nikita.tereshenko@gmail.com",
-      "photoURL": "https://i.pinimg.com/originals/3d/47/4f/3d474f82ff71595e8081f9a120892ae8.gif"
+      "photoURL": "https://i.pinimg.com/originals/3d/47/4f/3d474f82ff71595e8081f9a120892ae8.gif",
+      "active": true
     },
     {
       "id": 3,
       "name": "Tim",
       "lastName": "Wagner",
       "email": "timVagner@gmail.com",
-      "photoURL": "https://vignette.wikia.nocookie.net/yogscast/images/8/8a/Avatar_Turps_2015.jpg"
+      "photoURL": "https://vignette.wikia.nocookie.net/yogscast/images/8/8a/Avatar_Turps_2015.jpg",
+      "active": true
     },
     {
       "id": 4,
