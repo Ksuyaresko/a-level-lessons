@@ -1140,13 +1140,13 @@ function showDemo161(id) {
 showDemo161('demo_16_1');
 codePreview('demo_16_1', showDemo161);
 
-function testJsonServer() {
-    console.log('testJsonServer')
-    fetch('/users')
-        .then(response => response.json())
-        .then(json => console.log(json))
-}
-
-testJsonServer()
+// function testJsonServer() {
+//     console.log('testJsonServer')
+//     fetch('/users')
+//         .then(response => response.json())
+//         .then(json => console.log(json))
+// }
+//
+// testJsonServer()
 
 
